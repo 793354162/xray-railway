@@ -1,22 +1,17 @@
-> 提醒： 滥用可能导致账户被BAN！！！   
+## 该项目是该项目https://github.com/mixool/xrayku 的移植，感谢大佬
+>[原项目教程](https://github.com/mixool/xrayku)建议对比着看就明白了~
+>鉴于大佬已经把SS和trojan-go移除项目，所以不建议使用这两，用v2不香吗？
+## 懒人专属！
+>[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template?template=https%3A%2F%2Fgithub.com%2Fwinkxx%2Fxray-railway&envs=CADDYIndexPage%2CCONFIGCADDY%2CCONFIGXRAY%2CParameterSSENCYPT%2CPORT%2CStoreFiles%2CAUUID&CADDYIndexPageDefault=https%3A%2F%2Fraw.githubusercontent.com%2Fcaddyserver%2Fdist%2Fmaster%2Fwelcome%2Findex.html&CONFIGCADDYDefault=https%3A%2F%2Fraw.githubusercontent.com%2Fmixool%2Fxrayku%2Fmaster%2Fetc%2FCaddyfile&CONFIGXRAYDefault=https%3A%2F%2Fraw.githubusercontent.com%2Fmixool%2Fxrayku%2Fmaster%2Fetc%2Fxray.json&ParameterSSENCYPTDefault=chacha20-ietf-poly1305&PORTDefault=6992&StoreFilesDefault=https%3A%2F%2Fraw.githubusercontent.com%2Fmixool%2Fxrayku%2Fmaster%2Fetc%2FStoreFiles&referralCode=dRpUXN)
   
-* 使用[xray](https://github.com/XTLS/Xray-core)+caddy同时部署通过ws传输的vmess vless trojan shadowsocks socks等协议  
-* 支持tor网络，且可通过自定义网络配置文件启动xray和caddy来按需配置各种功能  
-* 支持存储自定义文件,目录及账号密码均为AUUID,客户端务必使用TLS连接  
-  
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://dashboard.heroku.com/new?template=https://github.com/mixool/xrayku)
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template?template=https%3A%2F%2Fgithub.com%2Fwinkxx%2Fxray-railway&envs=CADDYIndexPage%2CCONFIGCADDY%2CCONFIGXRAY%2CParameterSSENCYPT%2CPORT%2CStoreFiles%2CAUUID&CADDYIndexPageDefault=https%3A%2F%2Fraw.githubusercontent.com%2Fcaddyserver%2Fdist%2Fmaster%2Fwelcome%2Findex.html&CONFIGCADDYDefault=https%3A%2F%2Fraw.githubusercontent.com%2Fmixool%2Fxrayku%2Fmaster%2Fetc%2FCaddyfile&CONFIGXRAYDefault=https%3A%2F%2Fraw.githubusercontent.com%2Fmixool%2Fxrayku%2Fmaster%2Fetc%2Fxray.json&ParameterSSENCYPTDefault=chacha20-ietf-poly1305&PORTDefault=6992&StoreFilesDefault=https%3A%2F%2Fraw.githubusercontent.com%2Fmixool%2Fxrayku%2Fmaster%2Fetc%2FStoreFiles&referralCode=dRpUXN)
-  
-### 服务端
-点击上面紫色`Deploy to Heroku`，会跳转到heroku app创建页面，填上app的名字、选择节点、按需修改部分参数和AUUID后点击下面deploy创建app即可开始部署  
-如出现错误，可以多尝试几次，待部署完成后页面底部会显示Your app was successfully deployed  
-  * 点击Manage App可在Settings下的Config Vars项**查看和重新设置参数**  
-  * 点击Open app跳转[欢迎页面](/etc/CADDYIndexPage.md)域名即为heroku分配域名，格式为`appname.herokuapp.com`，用于客户端  
-  * 默认协议密码为$UUID，WS路径为$UUID-[vmess|vless|trojan|ss|socks]格式
+## 部署(railway版)
+1. 点击按钮,默认会新建一个仓库~
+2. 下面都是带有默认值的，均是指向大佬仓库，别修改~
+3. **只要修改下面的AUUID就好了！！！我可没有写入默认值，自行生成！**
   
 ### 客户端
-* **务必替换所有的appname.herokuapp.com为heroku分配的项目域名**  
-* **务必替换所有的8f91b6a0-e8ee-11ea-adc1-0242ac120002为部署时设置的AUUID**  
+* **务必替换所有的appname.herokuapp.com为railway分配的项目域名**  
+* **务必替换所有的AUUID以及password为部署时设置的AUUID的值(所有！)**  
   
 <details>
 <summary>xray</summary>
@@ -26,11 +21,11 @@
 * 代理协议：vless 或 vmess
 * 地址：appname.herokuapp.com
 * 端口：443
-* 默认UUID：8f91b6a0-e8ee-11ea-adc1-0242ac120002
+* 默认UUID：AUUID
 * 加密：none
 * 传输协议：ws
 * 伪装类型：none
-* 路径：/8f91b6a0-e8ee-11ea-adc1-0242ac120002-vless // 默认vless使用/$uuid-vless，vmess使用/$uuid-vmess
+* 路径：/AUUID-vless // 默认vless使用/$uuid-vless，vmess使用/$uuid-vmess
 * 底层传输安全：tls
 ```
 </details>
@@ -47,11 +42,11 @@
     "remote_addr": "appname.herokuapp.com",
     "remote_port": 443,
     "password": [
-        "8f91b6a0-e8ee-11ea-adc1-0242ac120002"
+        "AUUID"
     ],
     "websocket": {
         "enabled": true,
-        "path": "/8f91b6a0-e8ee-11ea-adc1-0242ac120002-trojan",
+        "path": "/AUUID-trojan",
         "host": "appname.herokuapp.com"
     }
 }
@@ -68,7 +63,7 @@
 * 密码：password
 * 加密：chacha20-ietf-poly1305
 * 插件程序：xray-plugin_windows_amd64.exe  //需将插件https://github.com/shadowsocks/xray-plugin/releases下载解压后放至shadowsocks同目录
-* 插件选项: tls;host=appname.herokuapp.com;path=/8f91b6a0-e8ee-11ea-adc1-0242ac120002-ss
+* 插件选项: tls;host=appname.herokuapp.com;path=/AUUID-ss
 ```
 </details>
   
@@ -100,3 +95,4 @@ addEventListener(
 </details>
   
 > [更多来自热心网友PR的使用教程](/tutorial)
+
